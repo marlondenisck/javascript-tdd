@@ -1,0 +1,15 @@
+{
+  "name": "calculadora",
+  "version": "1.0.0",
+  "description": "calculadora simples com tdd",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:tdd": "jest --watchAll"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.6.3"
+  }
+}
