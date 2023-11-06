@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:tdd": "jest --watchAll"
+    "test:tdd": "jest --watchAll",
+    "test:coverage": "jest --coverage"
   },
   "author": "",
   "license": "ISC",

@@ -27,4 +27,8 @@ describe('FizzBuzz', () => {
     expect(FizzBuzz(7)).toEqual(7)
   })
 
+  it('Se for 0, retorna', () => {
+    expect(FizzBuzz(0)).toEqual(0)
+  })
+
 })
