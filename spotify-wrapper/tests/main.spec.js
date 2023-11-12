@@ -22,22 +22,34 @@ describe('Spotify wrapper', () => {
   
   })
 
-  describe('Generic Search', () => {
-    it('deve chamar a função fetch', () => {
-      const fetchedStub = jest.spyOn(global, 'fetch');
-      const artists = search();
+describe('Generic Search', () => {
+  let fetchedStub;
+  beforeEach(() => {
+    fetchedStub = jest.spyOn(global, 'fetch');
+  });
 
-      expect(fetchedStub).toHaveBeenCalled();
-      fetchedStub.mockRestore();
-    });
+  afterEach(() => {
+    fetchedStub.mockRestore();
+  })
 
-    it('deve receber o URL correta', () => {
-      const fetchedStub = jest.spyOn(global, 'fetch');
+  it('deve chamar a função fetch', () => {
+    const artists = search();
+    expect(fetchedStub).toHaveBeenCalled();
+  });
+
+  describe('Deve receber a URL correta', () => {
+    test('Passando um tipo', () => {
       const artists = search('Incubus', 'artist');
-
       expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Incubus&type=artist');
       const albuns = search('Incubus', 'album');
       expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Incubus&type=album');
     });
+
+    test('passando mais de um tipo', () => {
+      
+      const artisAndAlbuns = search('Incubus', ['artist', 'album']);
+      expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Incubus&type=artist,album');
+    });
   });
+});
 });
