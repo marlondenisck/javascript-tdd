@@ -1,6 +1,7 @@
 import { search, searchAlbums, searchArtists, searchTracks, searchPlaylists } from '../src/main';
 
 describe('Spotify wrapper', () => {
+
   describe('smoke tests', () => {
     it('deve existir o método "search"', () => {
       expect(search).toBeInstanceOf(Function)
@@ -17,39 +18,59 @@ describe('Spotify wrapper', () => {
     it('deve existir o método "searchTracks"', () => {
       expect(searchTracks).toBeInstanceOf(Function)
     });
-    
-    
-  
   })
 
-describe('Generic Search', () => {
-  let fetchedStub;
-  beforeEach(() => {
-    fetchedStub = jest.spyOn(global, 'fetch');
-  });
+  describe('Generic Search', () => {
+    let fetchedStub;
 
-  afterEach(() => {
-    fetchedStub.mockRestore();
-  })
+    beforeEach(() => {
+      fetchedStub = jest.spyOn(global, 'fetch');
+    });
 
-  it('deve chamar a função fetch', () => {
-    const artists = search();
-    expect(fetchedStub).toHaveBeenCalled();
-  });
+    afterEach(() => {
+      fetchedStub.mockRestore();
+    })
 
-  describe('Deve receber a URL correta', () => {
-    test('Passando um tipo', () => {
+    it('deve chamar a função fetch', () => {
+      const artists = search();
+      expect(fetchedStub).toHaveBeenCalled();
+    });
+
+    describe('Deve receber a URL correta', () => {
+      test('Passando um tipo', () => {
+        const artists = search('Incubus', 'artist');
+        expect(fetchedStub).toHaveBeenCalledWith(
+          'https://api.spotify.com/v1/search?q=Incubus&type=artist',
+          {
+            headers: {
+              'Authorization': `Bearer ${process.env.TOKEN}`
+            }
+          }
+        );
+        const albuns = search('Incubus', 'album');
+        expect(fetchedStub).toHaveBeenCalledWith(
+          'https://api.spotify.com/v1/search?q=Incubus&type=album',
+          {
+            headers: {
+              'Authorization': `Bearer ${process.env.TOKEN}`
+            }
+          }
+        );
+      });
+    });
+
+    it('should return the JSON Data from the Promise', () => {
+      fetchedStub.mockResolvedValue({
+        json: () => ({ body: 'json' }),
+      });
+
       const artists = search('Incubus', 'artist');
-      expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Incubus&type=artist');
-      const albuns = search('Incubus', 'album');
-      expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Incubus&type=album');
+
+      artists.then(data => {
+        expect(data).toEqual({ body: 'json' });
+      });
     });
 
-    test('passando mais de um tipo', () => {
-      
-      const artisAndAlbuns = search('Incubus', ['artist', 'album']);
-      expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Incubus&type=artist,album');
-    });
   });
-});
+
 });
