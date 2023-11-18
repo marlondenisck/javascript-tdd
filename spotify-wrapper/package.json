@@ -2,7 +2,7 @@
   "name": "spotify-wrapper",
   "version": "1.0.0",
   "description": "spotify-wrapper api",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest",
     "test:tdd": "jest --watchAll",
