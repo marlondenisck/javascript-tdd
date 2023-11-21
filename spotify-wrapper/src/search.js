@@ -1,10 +1,11 @@
-require('dotenv').config();
-import API_URL from './config';
+
+import {API_URL, token} from './config';
+
 
 export const search = (query, type) => 
   fetch(`${API_URL}/search?q=${query}&type=${type}`, {
     headers: {
-      Authorization: `Bearer ${process.env.TOKEN}`
+      Authorization: `Bearer ${token}`
     
   }}).then(data => data.json());
 

@@ -2,15 +2,31 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  target: 'node',
+  devtool: 'source-map',
+  target: 'web',
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'spotifyWrapper.js',
+    path: path.join(__dirname, "./dist"),
+    filename: `spotifyWrapper.umd.js`,
     library: 'spotifyWrapper',
-    libraryTarget: 'umd',
-    globalObject: 'this',
-    umdNamedDefine: true
+    libraryTarget: 'var',
+    // libraryExport: 'default',
+    umdNamedDefine: true,
+},
+  // output: {
+  //   path: path.resolve(__dirname, 'dist'),
+  //   filename: 'spotifyWrapper.js',
+  //   library: 'spotifyWrapper',
+  //   libraryTarget: 'umd',
+  //   globalObject: 'this',
+  //   umdNamedDefine: true
+  // },
+  resolve: {
+    fallback: {
+      path: false,
+      os: false,
+      crypto: false,
+    }
   },
   module: {
     rules: [

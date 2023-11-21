@@ -21,3 +21,10 @@ Retorná o token, crie um arquivo ```.env``` na raiz e adicione a chave TOKEN=CO
 ````
 npx babel-node examples/albuns.js
 ````
+
+
+
+### Criando um lib do tipo UMD
+````
+yarn clean && yarn build:umd --stats-error-details
+```````

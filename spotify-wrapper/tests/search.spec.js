@@ -1,5 +1,5 @@
 import { search, searchAlbums, searchArtists, searchTracks, searchPlaylists } from '../src/search';
-
+import { token } from '../src/config';
 describe('Search', () => {
   let fetchedStub;
   let promise;
@@ -42,13 +42,13 @@ describe('Search', () => {
         const artists = search('Incubus', 'artist');
         expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Incubus&type=artist', {
           headers: {
-            Authorization: `Bearer ${process.env.TOKEN}`
+            Authorization: `Bearer ${token}`
           
         }});
         const albuns = search('Incubus', 'album');
         expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Incubus&type=album', {
           headers: {
-            Authorization: `Bearer ${process.env.TOKEN}`
+            Authorization: `Bearer ${token}`
           
         }});
       });
@@ -78,14 +78,14 @@ describe('Search', () => {
       const artists = searchArtists('Incubus');
       expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Incubus&type=artist', {
     headers: {
-      Authorization: `Bearer ${process.env.TOKEN}`
+      Authorization: `Bearer ${token}`
     
   }});
 
       const artists2 = searchArtists('Muse');
       expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Muse&type=artist', {
     headers: {
-      Authorization: `Bearer ${process.env.TOKEN}`
+      Authorization: `Bearer ${token}`
     
   }});
     });
@@ -101,14 +101,14 @@ describe('Search', () => {
       const albums = searchAlbums('Incubus');
       expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Incubus&type=album', {
     headers: {
-      Authorization: `Bearer ${process.env.TOKEN}`
+      Authorization: `Bearer ${token}`
     
   }});
 
       const albums2 = searchAlbums('Muse');
       expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Muse&type=album', {
     headers: {
-      Authorization: `Bearer ${process.env.TOKEN}`
+      Authorization: `Bearer ${token}`
     
   }});
     });
@@ -124,14 +124,14 @@ describe('Search', () => {
       const tracks = searchTracks('Incubus');
       expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Incubus&type=track', {
     headers: {
-      Authorization: `Bearer ${process.env.TOKEN}`
+      Authorization: `Bearer ${token}`
     
   }});
 
       const tracks2 = searchTracks('Muse');
       expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Muse&type=track', {
     headers: {
-      Authorization: `Bearer ${process.env.TOKEN}`
+      Authorization: `Bearer ${token}`
     
   }});
     });
@@ -147,14 +147,14 @@ describe('Search', () => {
       const playlists = searchPlaylists('Incubus');
       expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Incubus&type=playlist', {
     headers: {
-      Authorization: `Bearer ${process.env.TOKEN}`
+      Authorization: `Bearer ${token}`
     
   }});
 
       const playlists2 = searchPlaylists('Muse');
       expect(fetchedStub).toHaveBeenCalledWith('https://api.spotify.com/v1/search?q=Muse&type=playlist', {
     headers: {
-      Authorization: `Bearer ${process.env.TOKEN}`
+      Authorization: `Bearer ${token}`
     
   }});
     });

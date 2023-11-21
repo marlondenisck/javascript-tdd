@@ -1,5 +1,5 @@
-require('dotenv').config();
-import API_URL from './config';
+
+import {API_URL} from './config';
 
 export const getAlbum = id => {
   return fetch(`${API_URL}/albums/${id}`)
