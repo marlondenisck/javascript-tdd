@@ -1,14 +1,21 @@
 
-import {API_URL} from './config';
+import {API_URL, token} from './config';
 
 export const getAlbum = id => {
-  return fetch(`${API_URL}/albums/${id}`)
+  return fetch(`${API_URL}/albums/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    
+  }})
     .then(response => response.json())
     .catch(err => console.log(err));
 }
 
 export const getAlbums = ids => {
-  return fetch(`${API_URL}/albums/?ids=${ids}`)
+  return fetch(`${API_URL}/albums/?ids=${ids}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+  }})
   .then(response => response.json())
   .catch(err => console.log(err));
 }
@@ -21,7 +28,10 @@ export const getAlbums = ids => {
 //   }}).then(data => data.json())
 
 export const getAlbumTracks = id => {
-  return fetch(`${API_URL}/albums/${id}/tracks`)
+  return fetch(`${API_URL}/albums/${id}/tracks`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+  }})
   .then(response => response.json())
   .catch(err => console.log(err));
 }
