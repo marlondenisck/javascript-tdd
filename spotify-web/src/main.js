@@ -1,1 +1,2 @@
-console.log('ola mundo!')
+import SpotifyWrapper from "./spotify";
+console.log(SpotifyWrapper);
